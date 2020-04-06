@@ -18,7 +18,7 @@ docker build -t paopaorobot/larvio .
 ### 下载数据集
 LARVIO的例程提供了[EuRoC](https://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets)数据集的演示程序。其中pangolin例程需求asl格式，ros nodelet例程需求bag格式，如果网速比较慢，建议下载最小的V102序列。
 ### 创建container
-我们假设你将V1_02的asl和bag分别存放在宿主的YOUR_PATH_TO_EUROC/V1_02_medium路径下，执行下述命令实例化container：
+我们假设你将V1_02的asl和bag都存放在宿主的YOUR_PATH_TO_EUROC/V1_02_medium路径下，执行下述命令实例化container：
 ```
 docker run -itd -v YOUR_PATH_TO_EUROC/V1_02_medium:/root/Dataset/V1_02 -p 5900:5900 paopaorobot/larvio
 ```
