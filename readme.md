@@ -11,7 +11,7 @@ docker pull paopaorobot/larvio
 ```
 git clone https://github.com/PaoPaoRobot/docker_larvio.git
 cd ./docker_larvio
-docker build -t larvio .
+docker build -t paopaorobot/larvio .
 ```
 ### VNC可视化准备
 下载与你电脑操作系统匹配的[VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/)。
@@ -20,7 +20,7 @@ LARVIO的例程提供了[EuRoC](https://projects.asl.ethz.ch/datasets/doku.php?i
 ### 创建container
 我们假设你将V1_02的asl和bag分别存放在宿主的YOUR_PATH_TO_EUROC/V1_02_medium路径下，执行下述命令实例化container：
 ```
-docker run -itd -v YOUR_PATH_TO_EUROC/V1_02_medium:/root/Dataset/V1_02 -p 5900:5900 larvio
+docker run -itd -v YOUR_PATH_TO_EUROC/V1_02_medium:/root/Dataset/V1_02 -p 5900:5900 paopaorobot/larvio
 ```
 然后打开VNC Viewer，输入127.0.0.1:5900进行连接。
 ### Pangolin例程
@@ -32,7 +32,7 @@ cd /root/LARVIO/build
 ### ROS例程
 在宿主机终端中，执行下述命令：
 ```
-docker exec -itd `docker ps | grep larvio | awk '{print $1}'` /bin/bash -c 'cd /root/LARVIO/ros_wrapper && . devel/setup.bash && roslaunch larvio larvio_euroc.launch'
+docker exec -itd `docker ps | grep paopaorobot/larvio | awk '{print $1}'` /bin/bash -c 'cd /root/LARVIO/ros_wrapper && . devel/setup.bash && roslaunch larvio larvio_euroc.launch'
 ```
 然后在VNC Viewer中，打开一个终端，执行下述命令：
 ```
@@ -42,5 +42,5 @@ roslaunch larvio larvio_rviz.launch
 ```
 回到宿主机终端，执行下命令：
 ```
-docker exec -it `docker ps | grep larvio | awk '{print $1}'` /bin/bash -c '. /opt/ros/melodic/setup.bash && rosbag play /root/Dataset/V1_02/V1_02_medium.bag'
+docker exec -it `docker ps | grep paopaorobot/larvio | awk '{print $1}'` /bin/bash -c '. /opt/ros/melodic/setup.bash && rosbag play /root/Dataset/V1_02/V1_02_medium.bag'
 ```
