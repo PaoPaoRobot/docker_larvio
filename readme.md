@@ -30,17 +30,17 @@ cd /root/LARVIO/build
 ./larvio /root/Dataset/V1_02/mav0/imu0/data.csv /root/Dataset/V1_02/mav0/cam0/data.csv /root/Dataset/V1_02/mav0/cam0/data ../config/euroc.yaml
 ```
 ### ROS例程
-在宿主机终端中，执行下述命令：
+在宿主机终端中，执行下述命令打开LARVIO节点：
 ```
 docker exec -itd `docker ps | grep paopaorobot/larvio | awk '{print $1}'` /bin/bash -c 'cd /root/LARVIO/ros_wrapper && . devel/setup.bash && roslaunch larvio larvio_euroc.launch'
 ```
-然后在VNC Viewer中，打开一个终端，执行下述命令：
+然后在VNC Viewer中，打开一个终端，执行下述命令打开rviz：
 ```
 cd /root/LARVIO/ros_wrapper
 . devel/setup.bash
 roslaunch larvio larvio_rviz.launch
 ```
-回到宿主机终端，执行下命令：
+回到宿主机终端，执行下命令播放数据集：
 ```
 docker exec -it `docker ps | grep paopaorobot/larvio | awk '{print $1}'` /bin/bash -c '. /opt/ros/melodic/setup.bash && rosbag play /root/Dataset/V1_02/V1_02_medium.bag'
 ```
